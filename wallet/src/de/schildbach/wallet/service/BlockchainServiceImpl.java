@@ -198,7 +198,7 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 			if (text.length() > 0)
 				text.append(", ");
 
-			final String addressStr = notificationAddress.toBase58();
+			final String addressStr = notificationAddress.toString();
 			final String label = AddressBookProvider.resolveLabel(getApplicationContext(), addressStr);
 			text.append(label != null ? label : addressStr);
 		}
@@ -378,8 +378,8 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 
 				log.info("starting peergroup");
 				peerGroup = new PeerGroup(Constants.NETWORK_PARAMETERS, blockChain);
-				peerGroup.setDownloadTxDependencies(0); // recursive implementation causes StackOverflowError
-				peerGroup.addWallet(wallet);
+				peerGroup.setDownloadTxDependencies(false); // recursive implementation causes StackOverflowError
+				peerGroup.addWallet((org.bitcoinj.core.Wallet) wallet);
 				peerGroup.setUserAgent(Constants.USER_AGENT, application.packageInfo().versionName);
 				peerGroup.addConnectedEventListener(peerConnectivityListener);
 				peerGroup.addDisconnectedEventListener(peerConnectivityListener);

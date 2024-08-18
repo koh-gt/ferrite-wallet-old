@@ -39,9 +39,16 @@ gradle -v
 ### Java JDK
 ```
 sudo apt update
-sudo apt install openjdk-11-jdk
+sudo apt install openjdk-8-jdk
 
-java - version
+java -version
+
+# if not the correct version
+sudo update-alternatives --config java
+
+  2            /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java   1081      manual mode
+
+choose java-8
 ```
 
 ### Android SDK
@@ -100,7 +107,7 @@ mvn install:install-file \
 
 ```
 cd ferrite-wallet
-gradle clean build
+sudo gradle clean build
 
 ```
 

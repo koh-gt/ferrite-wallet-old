@@ -450,6 +450,8 @@ public class ExchangeRatesProvider extends ContentProvider
             }
         }
 
+		return btcRate;
+
 	}
 
 }
