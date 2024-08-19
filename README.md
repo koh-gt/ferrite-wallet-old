@@ -81,6 +81,7 @@ cd /opt/android-sdk-linux/tools
 
 # add to PATH
 
+
 echo "sdk.dir=/opt/android-sdk-linux" >> local.properties
 
 echo "export ANDROID_HOME=/opt/android-sdk-linux" >> ~/.bashrc
@@ -103,7 +104,9 @@ mvn install:install-file \
   -Dpackaging=jar
 ```
 
+javap -cp ferritej-core-1.0.0-bundled.jar org.bitcoinj.core.PeerGroup
 
+Then unpack ferritej-core-1.0.0/org/bitcoinj into ~/.m2/repository/org/bitcoinj$
 
 ```
 cd ferrite-wallet

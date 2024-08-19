@@ -3,6 +3,7 @@ apply plugin: 'androidsvgdrawable'
 def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
 repositories {
     jcenter()
+    mavenLocal()
          maven {
              url "https://maven.google.com"
          }
@@ -13,7 +14,10 @@ dependencies {
     compile 'com.madgag.spongycastle:prov:1.54.0.0'
     compile 'com.madgag.spongycastle:pkix:1.54.0.0'
     compile 'com.madgag.spongycastle:pg:1.54.0.0'
-
+    
+    compile 'org.ferritej:ferritej-core:1.0.0'
+    
+    compile files('ferritej-core-1.0.0.jar')
     compile files('ferritej-core-1.0.0-bundled.jar')
     compile files('wallet-name-resolver-0.1.4-bundled.jar')
     // compile files('wallet-name-resolver-0.0.5.jar')
@@ -53,7 +57,7 @@ android {
 
     buildTypes {
         all {
-            minifyEnabled true
+            minifyEnabled false
             proguardFile 'proguard.cfg'
         }
         debug {
@@ -84,9 +88,23 @@ android {
     }
 
     packagingOptions {
+        exclude 'META-INF/maven/com.lambdaworks/scrypt/pom.properties'
+        exclude 'META-INF/maven/com.lambdaworks/scrypt/pom.xml'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.properties'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.xml'
+        exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
+        exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
+        exclude 'META-INF/maven/com.squareup.okhttp/okhttp/pom.properties'
+        exclude 'META-INF/maven/com.squareup.okhttp/okhttp/pom.xml'
+        exclude 'META-INF/maven/org.slf4j/slf4j-api/pom.properties'
+        exclude 'META-INF/maven/org.slf4j/slf4j-api/pom.xml'
+        exclude 'META-INF/maven/com.google.protobuf/protobuf-java/pom.properties'
+        exclude 'META-INF/maven/com.google.protobuf/protobuf-java/pom.xml'
+        
+        
         exclude 'lib/x86_64/darwin/libscrypt.dylib'
         exclude 'lib/x86_64/freebsd/libscrypt.so'
-        exclude 'lib/x86_64/linux/libscrypt.so'
+        //exclude 'lib/x86_64/linux/libscrypt.so'
         exclude 'com/google/thirdparty/publicsuffix/PublicSuffixPatterns.gwt.xml'
         exclude 'com/google/thirdparty/publicsuffix/PublicSuffixType.gwt.xml'
         exclude 'org/bitcoinj/crypto/mnemonic/wordlist/english.txt'
@@ -96,9 +114,9 @@ android {
     }
 }
 
-task svgToPng(type: fr.avianey.androidsvgdrawable.gradle.SvgDrawableTask) {
+/*task svgToPng(type: fr.avianey.androidsvgdrawable.gradle.SvgDrawableTask) {
     from = files('graphics')
     to = file('res')
     targetedDensities = ['hdpi', 'xhdpi', 'xxhdpi']
     outputFormat = 'PNG'
-} 
+} */
