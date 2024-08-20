@@ -97,7 +97,7 @@ copy over to your
 ferrite-wallet/sample-integration-android/ferritej-core-1.0.0.jar
 ```
 mvn install:install-file \
-  -Dfile=ferritej-core-1.0.0.jar \
+  -Dfile=ferritej-core-1.0.0-bundled.jar \
   -DgroupId=org.ferritej \
   -DartifactId=ferritej-core \
   -Dversion=1.0.0 \
